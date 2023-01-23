@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react';
+/* import { Link } from 'react'; */
 
 export default function ListUser() {
     const [users, setUsers] = useState([]);
@@ -9,7 +9,7 @@ export default function ListUser() {
     }, []);
     function getUsers() {
         axios
-            .get('http://localhost:3306/api/users/')
+            .get('http://localhost/react-php/api/users.php')
             .then(function(response) {
                 console.log(response.data);
                 setUsers(response.data);
@@ -36,7 +36,7 @@ export default function ListUser() {
                             <td>{user.email}</td>
                             <td>{user.mobile}</td>
                             <td>
-                                <Link to={`user/${user.id}/edit`} style={{marginRight: "10px"}}>Edit</Link>
+                                {/* <Link to={`user/${user.id}/edit`} style={{marginRight: "10px"}}>Edit</Link> */}
                                 <button>Delete</button>
                             </td>
                         </tr>

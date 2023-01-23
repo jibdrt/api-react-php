@@ -12,7 +12,7 @@ export default function CreateUser() {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8888/api/user/save', inputs)
+        axios.post('http://localhost/api/user/save', inputs)
         .then(function(response){
             console.log(response.data);
         })
@@ -33,6 +33,14 @@ export default function CreateUser() {
                             <td>
                                 <input type="text" name="name" onChange={handleChange} />
                             </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>
+                                    Email:
+                                </label>
+                                <input type="text" name="email" onChange={handleChange} />
+                            </th>
                         </tr>
                         <tr>
                             <th>

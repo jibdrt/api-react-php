@@ -10,6 +10,17 @@ $conn = new DbConnect();
 $db = $conn->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
+    case "GET":
+        $sql = "SELECT * FROM users";
+        $path = explode('/', $_SERVER['REQUEST_URI']);
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            
+        echo json_encode($users);
+        break;
     case 'POST';
         $user = json_decode(file_get_contents('php://input'));
         $sql = 'INSERT INTO users(id, name, mobile, created_at) values (null, :name, :email, :mobile, :created_at)';
@@ -25,13 +36,5 @@ switch ($method) {
             $data = ['status' => 1, 'message' => "Operation failed."];
         }
         echo json_encode($data);
-        break;
-    case "GET":
-        $sql = "SELECT * FROM users";
-        $path = explode('/', $_SERVER['REQUEST_URI']);
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-echo 'index';
