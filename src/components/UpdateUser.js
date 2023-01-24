@@ -11,3 +11,17 @@ export default function ListUser() {
         getUser();
     }, []);
 }
+const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}));
+}
+const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+        .put(`http://localhost/react-php/api/users/${id}/edit`, inputs)
+        .then(function(response) {
+            console.log(response.data);
+            navigate('/');
+        });
+}

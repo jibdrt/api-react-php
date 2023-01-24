@@ -13,12 +13,9 @@ switch ($method) {
     case "GET":
         $sql = "SELECT * FROM users";
         $path = explode('/', $_SERVER['REQUEST_URI']);
-
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
         break;
     case 'POST';
@@ -37,4 +34,3 @@ switch ($method) {
         }
         echo json_encode($data);
 }
-
