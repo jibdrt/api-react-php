@@ -6,7 +6,7 @@
         private $server = 'localhost';
         private $dbname = 'react_app';
         private $user = 'root';
-        private $pass = 'root';
+        private $pass = '';
         public function connect() {
             try {
                 $conn = new PDO('mysql:host=' .$this->server .';dbname=' . $this->dbname, $this->user, $this->pass);

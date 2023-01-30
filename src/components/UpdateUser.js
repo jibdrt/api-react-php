@@ -3,13 +3,22 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
-export default function UpdateUser() {
+export default function ListUser() {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState([]);
     const { id } = useParams();
     useEffect(() => {
-        UpdateUser();
+        getUser();
     }, []);
+
+    function getUser() {
+        axios
+            .get(`http://localhost/react-php/api/users.php/${id}`)
+            .then(function (response) {
+                console.log(response.data);
+                setInputs(response.data);
+            });
+    }
 
     const handleChange = (event) => {
         const name = event.target.name;
